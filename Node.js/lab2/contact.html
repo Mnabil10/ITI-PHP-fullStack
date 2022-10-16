@@ -1,0 +1,102 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function deleteContact(id){
+            fetch("http://localhost:8080/deletecontact?id="+id,{
+                method:"delete"
+            }).then(x=>x.json()).then(res=>alert(res.msg));
+        }
+
+        function edit(contact){
+            console.log(contact);
+            document.getElementById("editname").value=contact.name;
+            document.getElementById("editphone").value=contact.phone;
+            document.getElementById("editempid").value=contact.id;
+
+        }
+
+        function getContacts(name){
+            fetch("http://localhost:8080/contacts?name="+name).then(x=>x.json()).then(contacts=>{
+                let html =`
+                <h1>Contacts</h1>
+                <form action="contacts.html" method="get">Search<input type="text" name="name" value="${name}" /><input type="submit" value="search"/></form>
+                `
+
+                
+                
+                let contactsTrs = contacts.map(contact=>{
+                    return `<tr><td>${contact.id}</td><td>${contact.name}</td><td>${contact.phone}</td><td>
+                    <button onclick="deleteContact(${contact.id})">Delete</delete>
+                    <button onclick='edit(${JSON.stringify(contact)})'>Edit</delete>
+                    </td></tr>`
+                })
+
+                html += `<table><tr><td>Id</td><td>Name</td><td>Age</td><td>Actions</td></tr>${contactsTrs.join("")}</table>`
+                document.getElementById("table").innerHTML=html;
+            })
+        }
+        getContacts("");
+
+
+        function contactformSubmit(e){
+            e.preventDefault();
+            let contact = {
+                name : document.getElementById("name").value,
+                phone : document.getElementById("phone").value,
+            }
+            console.log(contact);
+            fetch("http://localhost:8080/addcontact",{
+                method:"POST",
+                headers:{
+                    'content-type':'application/json'
+                },
+                body:JSON.stringify(contact)
+            }).then(x=>x.json()).then(res=>{
+                alert(res.msg);
+                getContacts("");
+            });
+        }
+
+
+        function editcontactformSubmit(e){
+            e.preventDefault();
+            let contact = {
+                name : document.getElementById("editname").value,
+                phone : document.getElementById("editphone").value,
+                id : document.getElementById("editcontactid").value,
+            }
+            console.log(contact);
+            fetch("http://localhost:8080/editcontact",{
+                method:"PUT",
+                headers:{
+                    'content-type':'application/json'
+                },
+                body:JSON.stringify(contact)
+            }).then(x=>x.json()).then(res=>{
+                alert(res.msg);
+                getContacts("");
+            });
+        }
+    </script>
+</head>
+<body>
+    <h1>Add</h1>
+    <form id="contactform"  onsubmit="contactformSubmit(event)">
+        Name:<input type="text" id="name"/><br/>
+        Phone:<input type="number" id="phone"/><br/>
+        <input type="submit" value="add"/>
+    </form>
+    <h1>Edit</h1>
+    <form id="editcontactform"  onsubmit="editcontactformSubmit(event)">
+        Name:<input type="text" id="editname"/><br/>
+        Phone:<input type="number" id="editphone"/><br/>
+        <input type="hidden" id="editcontactid"/><br/>
+        <input type="submit" value="save"/>
+    </form>
+    <div id="table"></div>
+</body>
+</html>
