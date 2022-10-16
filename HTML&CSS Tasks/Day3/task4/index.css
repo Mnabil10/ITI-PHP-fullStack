@@ -1,0 +1,96 @@
+body{
+    background-color: aqua;
+}
+.grid{ 
+    background-color: aqua;
+     display: grid;
+     grid-template-columns: 1fr 1fr 1fr;
+     grid-template-rows: 1fr 1fr 1fr;
+     gap: 2px 2px;
+     grid-auto-flow: row;
+     grid-template-areas:
+      "i1 i2 i2"
+      "i1 i4 i5"
+      "i6 i6 i5";
+      width: 800px;
+      height: 600px;
+      transition: all 5s;
+      
+  }
+ 
+  .grid:hover{
+    transform: translate(50px,50px) rotate(45deg);
+  }
+
+  .i1 {
+    display: grid; 
+  grid-template-columns: 1fr 1fr 1fr; 
+  grid-template-rows: 1fr 1fr 1fr; 
+  gap: 0px 0px; 
+  grid-template-areas: 
+    ". . ."
+    ". . ."
+    ". . ."; 
+  grid-area: i1; 
+  background-color: black;
+  color: white;
+  
+  }
+  
+  .i2 {
+    display: grid; 
+    grid-template-columns: 1fr 1fr 1fr; 
+    grid-template-rows: 1fr 1fr 1fr; 
+    gap: 0px 0px; 
+    grid-template-areas: 
+      ". . ."
+      ". . ."
+      ". . ."; 
+    grid-area: i2; 
+    background-color: black;
+    color: white;
+}
+  
+  .i4 { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr 1fr; 
+    grid-template-rows: 1fr 1fr 1fr; 
+    gap: 0px 0px; 
+    grid-template-areas: 
+      ". . ."
+      ". . ."
+      ". . ."; 
+    grid-area: i4; 
+    background-color: black;
+    color: white;
+}
+  
+  .i5{
+    display: grid; 
+  grid-template-columns: 1fr 1fr 1fr; 
+  grid-template-rows: 1fr 1fr 1fr; 
+  gap: 0px 0px; 
+  grid-template-areas: 
+    ". . ."
+    ". . ."
+    ". . ."; 
+  grid-area: i5;
+  background-color: black;
+  color: white;
+   }
+  
+  .i6 {
+    display: grid; 
+  grid-template-columns: 1fr 1fr 1fr; 
+  grid-template-rows: 1fr 1fr 1fr; 
+  gap: 0px 0px; 
+  grid-template-areas: 
+    ". . ."
+    ". . ."
+    ". . ."; 
+  justify-self: stretch; 
+  grid-area: i6; 
+  background-color: black;
+  color: white;
+ }
+  

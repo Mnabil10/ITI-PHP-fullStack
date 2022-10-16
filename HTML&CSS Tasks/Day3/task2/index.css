@@ -1,0 +1,22 @@
+.container{
+    margin: auto;
+    padding: 5px 0px 0px 0px;
+}
+input{
+    border: 2px solid red;
+}
+#usname:valid~#parname{
+    visibility: hidden;
+}
+#usname:invalid~#parname{
+    visibility: block;
+}
+#email:valid~#paremail{
+    visibility: hidden;
+}
+#email:invalid~#paremail{
+    visibility: block;
+}
+#btn:hover .par{
+    display: none;
+}

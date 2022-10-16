@@ -1,0 +1,17 @@
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+ctx.beginPath();
+ctx.moveTo(20, 280);
+ctx.lineTo(150, 280);
+ctx.lineTo(150, 65);
+ctx.fillStyle = 'blue';
+ctx.fill();
+ctx.stroke();
+ctx.closePath();
+ctx.beginPath();
+ctx.fillStyle = 'black';
+ctx.fillText('c',60,150);
+ctx.fillText('b',170,150);
+ctx.fillText('a',85,300);
+ctx.stroke();
+ctx.closePath();
