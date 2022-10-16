@@ -1,0 +1,18 @@
+<h1>Students</h1>
+<table class="rwd-table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!--Directive-->
+    <tr *ngFor="let s of AllStudentsParent">
+      <td>{{s.name}}</td>
+      <!--*ngIf-->
+      <td>{{s.age}}</td>
+      <!-- <td *ngIf="s.age < 30">{{s.age}}</td> -->
+    </tr>
+  </tbody>
+</table>
